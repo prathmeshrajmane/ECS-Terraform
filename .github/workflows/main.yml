@@ -34,17 +34,16 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
           role-to-assume: ${{ secrets.APES_IAM_ROLE }}
           role-session-name: infra-launch-session
-
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
-      run: |        
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:latest"
-        aws ecs update-service --cluster first-cluster --service my-first-service --task-definition   my-first-task --force-new-deployment
+        run: |        
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:latest"
+          aws ecs update-service --cluster first-cluster --service my-first-service --task-definition   my-first-task --force-new-deployment
       - name: 'Setup Terraform and terragrunt'
         uses: autero1/action-terragrunt@v1.1.1
         with:
