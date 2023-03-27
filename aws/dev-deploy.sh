@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+#set -e
 cd aws/environments/dev
 
 #terragrunt run-all init
