@@ -5,9 +5,9 @@ on:
       - master
 env:
   AWS_DEFAULT_REGION: us-east-1
-  ECR_REPOSITORY: face_recognition 
+  ECR_REPOSITORY: objectdetection
   ECS_SERVICE: objectdetection                                          # set this to your Amazon ECS service name
-  ECS_CLUSTER: test                                                # set this to your Amazon ECS cluster name
+  ECS_CLUSTER: first-cluster                                                # set this to your Amazon ECS cluster name
 permissions:
   id-token: write
   contents: write

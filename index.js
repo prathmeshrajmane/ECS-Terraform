@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 5006
 
-app.get('/', (req, res) => res.send('Welcome This Page is running on ECR Farget:v1'))
+app.get('/', (req, res) => res.send('Welcome This Page is running on ECR Farget:v2'))
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
