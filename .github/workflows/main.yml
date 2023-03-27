@@ -32,7 +32,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
-          role-to-assume: ${{ secrets.APES_IAM_ROLE }}
+          #role-to-assume: ${{ secrets.APES_IAM_ROLE }}
           role-session-name: infra-launch-session
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
