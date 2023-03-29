@@ -46,7 +46,9 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:latest"
-          aws ecs update-service --cluster first-cluster --service my-first-service --task-definition   my-first-task --force-new-deployment
+          echo "--------------"
+          aws ecs update-service --cluster first-cluster --service my-first-service --task-definition my-first-task --force-new-deployment
+          echo "done"
       - name: 'Setup Terraform and terragrunt'
         uses: autero1/action-terragrunt@v1.1.1
         with:
