@@ -87,7 +87,8 @@ jobs:
       # END - Docker auth and build
 
       - name: Deploy Docker image
-        run: gcloud run deploy ${{ secrets.GCP_PROJECT_ID }} --image $IMAGE_NAME --region us-central1 --platform managed
+        run : gcloud run deploy objectdetection --image gcr.io/us-gcp-ame-its-209f8-sbx-1/webapp --region=us-central1
+ # run: gcloud run deploy ${{ secrets.GCP_PROJECT_ID }} --image $IMAGE_NAME --region us-central1 --platform managed
 
       # If required, use the Cloud Run url output in later steps
       - name: Show Output
