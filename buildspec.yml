@@ -1,0 +1,30 @@
+version: 0.2
+
+env:
+  secrets-manager:
+    DOCKERHUB_PASS: "sandas66"
+    DOCKERHUB_USERNAME: "prathmeshrajmane"
+    IMAGE_TAG: "latest"
+phases:
+  pre_build:
+    commands:
+      - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASS
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t $DOCKERHUB_USERNAME/test123:latest .
+      - docker tag test123 $DOCKERHUB_USERNAME/test123:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $DOCKERHUB_USERNAME/test123:$IMAGE_TAG
+      - echo Writing image definitions file...
+      - printf '[{"name":"order-service","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - cat imagedefinitions.json
+artifacts:
+  files:
+   - imagedefinitions.json
+   - target/order-service.jar
+
