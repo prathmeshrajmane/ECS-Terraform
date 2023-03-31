@@ -2,8 +2,8 @@ version: 0.2
 
 env:
   secrets-manager:
-    DOCKERHUB_PASS: "sandas66"
-    DOCKERHUB_USERNAME: "prathmeshrajmane"
+    DOCKERHUB_PASS: DockerHubSecret:dockerhub_pass
+    DOCKERHUB_USERNAME: DockerHubSecret:dockerhub_username
     IMAGE_TAG: "latest"
 phases:
   pre_build:
