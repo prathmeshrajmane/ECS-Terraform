@@ -1,5 +1,5 @@
-resource "aws_ecs_cluster" "dev" {
-    name = "dev"
+resource "aws_ecs_cluster" "dev1" {
+    name = "dev1"
 }
 
 
