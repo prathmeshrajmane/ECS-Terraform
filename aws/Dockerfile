@@ -8,6 +8,6 @@ RUN yarn
 
 COPY . .
 
-EXPOSE 5006
+EXPOSE 5001
 
 CMD ["node", "index.js"]
