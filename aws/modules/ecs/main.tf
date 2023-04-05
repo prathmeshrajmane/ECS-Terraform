@@ -42,7 +42,7 @@ resource "aws_ecs_task_definition" "model_retrain-dev" {
     
     resource "aws_ecs_service" "model_retrain" {
       name            = "model_retrain"                             
-      cluster         = "${aws_ecs_cluster.my_cluster.id}"             
+      cluster         = "${aws_ecs_cluster.dev1.id}"             
       task_definition = "${aws_ecs_task_definition.model_retrain-dev.arn}" 
       launch_type     = "FARGATE"
       desired_count   = 3
