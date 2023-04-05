@@ -46,7 +46,7 @@ name: Build and Deploy to Cloud Run
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 env:
   PROJECT_ID: us-gcp-ame-its-209f8-sbx-1 # TODO: update Google Cloud project id

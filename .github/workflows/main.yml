@@ -3,11 +3,10 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'aws/**'
 env:
   AWS_DEFAULT_REGION: us-east-1
-  ECR_REPOSITORY: objectdetection
-  ECS_SERVICE: objectdetection                                          # set this to your Amazon ECS service name
-  ECS_CLUSTER: first-cluster                                                # set this to your Amazon ECS cluster name
 permissions:
   id-token: write
   contents: write
@@ -34,21 +33,6 @@ jobs:
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
           role-to-assume: ${{ secrets.APES_IAM_ROLE }}
           role-session-name: infra-launch-session
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1    
-      - name: Build, tag, and push image to Amazon ECR
-        id: build-image
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
-        run: |        
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:latest"
-          echo "--------------"
-   #       aws ecs update-service --cluster first-cluster --service my-first-service --task-definition my-first-task --force-new-deployment
-  #      echo "done"
       - name: 'Setup Terraform and terragrunt'
         uses: autero1/action-terragrunt@v1.1.1
         with:
@@ -58,7 +42,7 @@ jobs:
 
       - name: 'Deploy dev environment'
         run:  aws/dev-deploy.sh
-  #            - name: 'Deploy prod environment'
-  #                    run:  aws/prod-destroy.sh
+ #             - name: 'Deploy prod environment'
+ #                     run:  aws/prod-destroy.sh
   #                         # - name: 'Update resources'
   #                              #   run: ./update.sh

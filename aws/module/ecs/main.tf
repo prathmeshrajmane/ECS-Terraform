@@ -9,7 +9,7 @@ resource "aws_ecs_task_definition" "model_retrain-dev" {
       [
         {
           "name": "model_retrain-dev",
-          "image": "${aws_ecr_repository.object-detection.repository_url}",
+          "image": "docker.io/prathmeshrajmane/webapp:2",
           "portMappings": [
             {
               "containerPort": 5001,
