@@ -34,7 +34,6 @@ resource "aws_ecs_task_definition" "model_retrain-dev" {
       DEFINITION
       requires_compatibilities = ["FARGATE"] 
       network_mode             = "awsvpc"   
-      revision                 = 9 
       memory                   = 2048     
       cpu                      = 1024       
       execution_role_arn       = var.aws_role_arn
