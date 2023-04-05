@@ -11,3 +11,4 @@ terraform {
       "-var-file=${get_parent_terragrunt_dir()}/dev.tfvars"
     ]
   }
+}
