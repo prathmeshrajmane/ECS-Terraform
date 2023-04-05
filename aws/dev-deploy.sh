@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-cd aws/environments/dev
+cd environments/dev
 
 terragrunt run-all init
 terragrunt run-all plan
