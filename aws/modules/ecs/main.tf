@@ -9,7 +9,7 @@ resource "aws_ecs_task_definition" "model_retrain-dev" {
       [
         {
           "name": "model_retrain-dev",
-          "image": "docker.io/prathmeshrajmane/webapp:2",
+          "image": "docker.io/prathmeshrajmane/webapp:6",
           "portMappings": [
             {
               "containerPort": 5001,
@@ -93,15 +93,15 @@ resource "aws_default_vpc" "default_vpc" {
 }
 
 resource "aws_default_subnet" "default_subnet_a" {
-  availability_zone = "us-east-2a"
+  availability_zone = "us-east-1a"
 }
 
 resource "aws_default_subnet" "default_subnet_b" {
-  availability_zone = "us-east-2b"
+  availability_zone = "us-east-1b"
 }
 
 resource "aws_default_subnet" "default_subnet_c" {
-  availability_zone = "us-east-2c"
+  availability_zone = "us-east-1c"
 }
 
 
