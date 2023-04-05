@@ -54,11 +54,4 @@ resource "aws_ecs_task_definition" "model_retrain-dev" {
         container_port   = 5001
       }
     
-      network_configuration {
-        subnets          = var.default_subnet_a.id[*]
-        assign_public_ip = true 
-        security_groups  = ["${aws_security_group.service_security_group.id}"]
-    
-      }
     }
-    

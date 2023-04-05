@@ -26,7 +26,6 @@ dependency "vpc" {
     config_path = "../vpc"
     mock_outputs = {
       alb_arn = "target_group"
-      default_subnet_a.id = ["default_subnet_a" , "default_subnet_b" , "default_subnet_c"]
     }
   }
 
@@ -34,5 +33,4 @@ dependency "vpc" {
 inputs = {
   aws_role_arn  = dependency.roles.outputs.aws_role_arn
   alb_arn = dependency.vpc.outputs.alb_arn
-  default_subnet_a = dependency.vpc.outputs.default_subnet_a.id
 }
